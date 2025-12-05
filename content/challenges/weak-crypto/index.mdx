@@ -1,0 +1,51 @@
+---
+id: weak-crypto
+title: "Weak RSA Implementation"
+category: "crypto"
+difficulty: "medium"
+points: 250
+tags: ["rsa","cryptography","factorization"]
+author: "UNG Cybersecurity Faculty"
+createdAt: "2025-01-15"
+updatedAt: "2025-01-15"
+flag:
+  format: "ung{.*}"
+  salt: "ung_salt_weak-crypto_2025"
+  sha256: "41f1f8a83754f868d731030b4b83b60c405a1c95f53ed76ea00c5f79dcaefbd6"
+hints:
+  - "Start by examining the basic artifacts and evidence provided"
+  - "Use industry-standard tools for this type of analysis"
+  - "The flag follows the format ung{...} with descriptive text"
+writeupVisibility: "after-solve"
+---
+
+## Challenge Overview
+
+A certificate authority was compromised using weak RSA keys. The attacker used small prime numbers making factorization possible. Factor the provided public key to decrypt the message and recover the flag.
+
+## Learning Objectives
+
+- Apply crypto analysis techniques
+- Use professional security tools
+- Understand real-world attack scenarios
+- Document findings professionally
+
+## Tools You May Need
+
+- Python with sympy or gmpy2
+- factordb.com for factorization
+- OpenSSL for key operations
+
+## Getting Started
+
+1. Review the challenge description carefully
+2. Gather and examine all provided materials
+3. Apply systematic analysis methodology
+4. Document your findings as you progress
+5. Submit the flag when discovered
+
+## Flag Format
+
+All flags follow the format: `ung{descriptive_text}`
+
+Good luck!

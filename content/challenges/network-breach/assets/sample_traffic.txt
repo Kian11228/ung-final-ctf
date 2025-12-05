@@ -1,0 +1,20 @@
+PCAP Analysis Challenge File
+=============================
+
+This file represents a network capture containing:
+- DNS queries with exfiltration attempts
+- HTTP traffic with C2 beacons
+- Suspicious FTP data transfers
+
+Tools Needed:
+- Wireshark
+- tshark
+- CyberChef for decoding
+
+Investigation Steps:
+1. Filter for DNS traffic
+2. Look for unusually long queries
+3. Decode base32/base64 encoded data
+4. Extract the flag from the traffic
+
+Flag is hidden in DNS TXT record responses.

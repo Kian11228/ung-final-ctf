@@ -1,0 +1,51 @@
+---
+id: network-breach
+title: "Corporate Network Breach Investigation"
+category: "forensics"
+difficulty: "easy"
+points: 150
+tags: ["wireshark","pcap","dns"]
+author: "UNG Cybersecurity Faculty"
+createdAt: "2025-01-15"
+updatedAt: "2025-01-15"
+flag:
+  format: "ung{.*}"
+  salt: "ung_salt_network-breach_2025"
+  sha256: "9d13fa6b97e3d5e2e0b58e4df2f55209dc9ecf137dd261950c5f12bed4d94190"
+hints:
+  - "Start by examining the basic artifacts and evidence provided"
+  - "Use industry-standard tools for this type of analysis"
+  - "The flag follows the format ung{...} with descriptive text"
+writeupVisibility: "after-solve"
+---
+
+## Challenge Overview
+
+Analyze captured network traffic from a corporate breach. DNS exfiltration was used to steal data. Your mission is to identify the command and control communication patterns and extract the flag from the network artifacts.
+
+## Learning Objectives
+
+- Apply forensics analysis techniques
+- Use professional security tools
+- Understand real-world attack scenarios
+- Document findings professionally
+
+## Tools You May Need
+
+- Wireshark or tshark for packet analysis
+- CyberChef for decoding
+- Network protocol references
+
+## Getting Started
+
+1. Review the challenge description carefully
+2. Gather and examine all provided materials
+3. Apply systematic analysis methodology
+4. Document your findings as you progress
+5. Submit the flag when discovered
+
+## Flag Format
+
+All flags follow the format: `ung{descriptive_text}`
+
+Good luck!

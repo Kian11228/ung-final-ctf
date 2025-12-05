@@ -1,0 +1,51 @@
+---
+id: cloud-s3
+title: "AWS S3 Misconfiguration Audit"
+category: "web"
+difficulty: "medium"
+points: 225
+tags: ["aws","s3","cloud-security"]
+author: "UNG Cybersecurity Faculty"
+createdAt: "2025-01-15"
+updatedAt: "2025-01-15"
+flag:
+  format: "ung{.*}"
+  salt: "ung_salt_cloud-s3_2025"
+  sha256: "1fbd324dce77b33cac63a03f7f16514e1cc7837c89346c69fd07f16b117b9829"
+hints:
+  - "Start by examining the basic artifacts and evidence provided"
+  - "Use industry-standard tools for this type of analysis"
+  - "The flag follows the format ung{...} with descriptive text"
+writeupVisibility: "after-solve"
+---
+
+## Challenge Overview
+
+Audit AWS cloud infrastructure for security issues. A misconfigured S3 bucket is publicly accessible. Enumerate the bucket, download sensitive files, and extract the flag from exposed credentials.
+
+## Learning Objectives
+
+- Apply web analysis techniques
+- Use professional security tools
+- Understand real-world attack scenarios
+- Document findings professionally
+
+## Tools You May Need
+
+- AWS CLI
+- S3Scanner
+- curl or wget for downloads
+
+## Getting Started
+
+1. Review the challenge description carefully
+2. Gather and examine all provided materials
+3. Apply systematic analysis methodology
+4. Document your findings as you progress
+5. Submit the flag when discovered
+
+## Flag Format
+
+All flags follow the format: `ung{descriptive_text}`
+
+Good luck!

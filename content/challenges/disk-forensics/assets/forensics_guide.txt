@@ -1,0 +1,30 @@
+Disk Forensics Investigation Guide
+====================================
+
+Challenge: Insider Threat Analysis
+
+Evidence: E01 disk image (simulated)
+
+Key Artifacts to Examine:
+1. Windows Registry
+   - HKCU\Software\Microsoft\Windows\CurrentVersion\Run
+   - Look for persistence mechanisms
+
+2. Deleted Files
+   - Use Autopsy to recover deleted files
+   - Check Documents, Downloads, Desktop
+
+3. Browser History
+   - places.sqlite (Firefox)
+   - History (Chrome)
+
+4. File System Timeline
+   - $MFT analysis
+   - USN Journal
+
+Tools Required:
+- Autopsy
+- FTK Imager
+- Registry Explorer
+
+The flag is hidden in a scheduled task registry value.
