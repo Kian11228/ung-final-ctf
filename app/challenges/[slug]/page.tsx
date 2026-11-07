@@ -1,10 +1,13 @@
-import { getChallengeBySlug, getAllChallenges } from '@/lib/content';
+import Link from 'next/link';
+import { getChallengeBySlug, getAllChallenges, getChallengeFiles } from '@/lib/content';
+import { ChallengeFiles } from '@/components/challenge-files';
+import { FlagSubmit } from '@/components/flag-submit';
 import { MDXRemote } from 'next-mdx-remote/rsc';
 import { notFound } from 'next/navigation';
 import { siteConfig } from '@/site.config';
 import rehypeHighlight from 'rehype-highlight';
 import remarkGfm from 'remark-gfm';
-import { Download, FileText, Eye, Flag, Calendar, User, Award } from 'lucide-react';
+import { Download, Eye, Flag, Calendar, User, Award } from 'lucide-react';
 
 export async function generateStaticParams() {
   const challenges = getAllChallenges();
@@ -24,6 +27,7 @@ export default function ChallengePage({ params }: { params: { slug: string } }) 
   if (!challenge) notFound();
 
   const { frontmatter, content } = challenge;
+  const files = getChallengeFiles(params.slug);
   const category = siteConfig.categories.find((c) => c.id === frontmatter.category);
 
   const difficultyConfig = {
@@ -37,9 +41,9 @@ export default function ChallengePage({ params }: { params: { slug: string } }) 
   return (
     <div className="container mx-auto max-w-5xl px-4 py-12">
       {/* Back button */}
-      <a href="/challenges" className="mb-6 inline-flex items-center text-sm text-muted-foreground hover:text-foreground">
+      <Link href="/challenges" className="mb-6 inline-flex items-center text-sm text-muted-foreground hover:text-foreground">
         ← Back to Challenges
-      </a>
+      </Link>
 
       {/* Header */}
       <div className="mb-8 space-y-6 rounded-2xl border border-border bg-card p-8">
@@ -86,29 +90,12 @@ export default function ChallengePage({ params }: { params: { slug: string } }) 
           <Download className="h-6 w-6" />
           Challenge Files
         </h2>
-        <div className="space-y-3">
-          <a
-            href={`/content/challenges/${params.slug}/assets/README.txt`}
-            download
-            className="flex items-center justify-between rounded-lg border border-border bg-background p-4 transition-all hover:border-primary/50 hover:shadow-md"
-          >
-            <div className="flex items-center gap-3">
-              <FileText className="h-5 w-5 text-primary" />
-              <div>
-                <p className="font-medium">Challenge Instructions</p>
-                <p className="text-xs text-muted-foreground">README.txt</p>
-              </div>
-            </div>
-            <Download className="h-4 w-4 text-muted-foreground" />
-          </a>
-          
-          <div className="rounded-lg bg-blue-500/10 p-4">
-            <p className="text-sm text-blue-500">
-              💡 <strong>Tip:</strong> Additional challenge-specific files are located in the assets folder. 
-              Check the instructions file for details.
-            </p>
-          </div>
-        </div>
+        <ChallengeFiles
+          challengeId={frontmatter.id}
+          variants={frontmatter.flag.variants}
+          sharedFiles={files.shared}
+          variantFiles={files.byVariant}
+        />
       </div>
 
       {/* Challenge Content */}
@@ -158,24 +145,18 @@ export default function ChallengePage({ params }: { params: { slug: string } }) 
           Found the flag? Submit it below to complete the challenge and earn <strong>{frontmatter.points} points</strong>.
         </p>
         
-        <div className="space-y-4">
-          <input
-            type="text"
-            placeholder="ung{your_flag_here}"
-            className="w-full rounded-lg border border-input bg-background px-4 py-3 font-mono text-sm transition-colors focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20"
-          />
-          <button
-            type="button"
-            className="w-full rounded-lg bg-primary px-4 py-3 font-semibold text-primary-foreground transition-all hover:bg-primary/90 hover:shadow-lg"
-          >
-            Submit Flag
-          </button>
-        </div>
+        <FlagSubmit
+          challengeId={frontmatter.id}
+          points={frontmatter.points}
+          format={frontmatter.flag.format}
+          salt={frontmatter.flag.salt}
+          variants={frontmatter.flag.variants}
+        />
 
         <div className="mt-4 rounded-lg bg-blue-500/10 p-4">
           <p className="text-xs text-blue-500">
-            <strong>Note:</strong> This is a demonstration platform. In the full version, flags will be validated 
-            against secure hashes and your progress will be tracked on the scoreboard.
+            <strong>Note:</strong> Flags are validated against secure hashes, and each student is assigned their
+            own flag variant. Your progress is saved in this browser.
           </p>
         </div>
       </div>

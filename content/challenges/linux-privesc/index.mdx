@@ -11,7 +11,15 @@ updatedAt: "2025-01-15"
 flag:
   format: "ung{.*}"
   salt: "ung_salt_linux-privesc_2025"
-  sha256: "0485afd7708330f8a851c9bd03f59fa2c6ff3c0bb67cde920db15b78a60dff4f"
+  variants:
+    - id: "variant-a"
+      sha256: "ffec4d96e8bc5fd8cb1504d49de1a2ce7b2776a823b2189c7190675ea7966a86"
+    - id: "variant-b"
+      sha256: "86afda920e95fea9a1f4322981b8d753de61e087474b776cd81e80d6277ff226"
+    - id: "variant-c"
+      sha256: "9631a777a28b9472007828d786d0e7467d1751eec928ea55274d9f57910e0756"
+    - id: "variant-d"
+      sha256: "4985b7c9c862c86d0eab81683faaea65e950a9173e85360a22dbfd958fa09af1"
 hints:
   - "Start by examining the basic artifacts and evidence provided"
   - "Use industry-standard tools for this type of analysis"

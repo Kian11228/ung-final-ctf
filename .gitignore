@@ -12,3 +12,9 @@ yarn-error.log*
 next-env.d.ts
 .vercel
 .env*.local
+
+# Instructor answer key: plaintext flags, never commit
+flags.local.json
+
+# Generated at build time from content/challenges/*/assets
+public/challenge-files/

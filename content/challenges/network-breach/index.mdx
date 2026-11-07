@@ -11,7 +11,15 @@ updatedAt: "2025-01-15"
 flag:
   format: "ung{.*}"
   salt: "ung_salt_network-breach_2025"
-  sha256: "9d13fa6b97e3d5e2e0b58e4df2f55209dc9ecf137dd261950c5f12bed4d94190"
+  variants:
+    - id: "variant-a"
+      sha256: "00aecb74af0335a61f7e7a1be9f61a65362e223110813eb14a997f136358c7a7"
+    - id: "variant-b"
+      sha256: "43aba98da77fa0608369da9102c994709d9f67f0a4dcaa49bfdc3a42f9db67e8"
+    - id: "variant-c"
+      sha256: "ebc175c3d4b1640345a7d979f76f2d6ee3adaf02aced949cc546a75f4fcdb3ca"
+    - id: "variant-d"
+      sha256: "30b9214ec4bddc45f36c32059d539d536ed6903cbcc3b0d2d43009fe1adf1d6d"
 hints:
   - "Start by examining the basic artifacts and evidence provided"
   - "Use industry-standard tools for this type of analysis"
