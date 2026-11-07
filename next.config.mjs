@@ -1,8 +1,14 @@
+const basePath = '/ung-final-ctf';
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/ung-final-ctf',
-  assetPrefix: '/ung-final-ctf/',
+  basePath,
+  assetPrefix: `${basePath}/`,
+  env: {
+    // Used for links to static files (challenge downloads), which next/link does not prefix.
+    NEXT_PUBLIC_BASE_PATH: basePath,
+  },
   images: {
     unoptimized: true,
   },

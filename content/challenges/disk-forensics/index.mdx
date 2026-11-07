@@ -11,7 +11,15 @@ updatedAt: "2025-01-15"
 flag:
   format: "ung{.*}"
   salt: "ung_salt_disk-forensics_2025"
-  sha256: "f9ed1ad0d9656740d03fefdaf19e9ff0d7c9423dbc25bfb6fe5d5e74180ca5f3"
+  variants:
+    - id: "variant-a"
+      sha256: "83aed02aa16ff07004d0c9c7f1dffc1341e6a15cbf833e17524662aa295e1ab6"
+    - id: "variant-b"
+      sha256: "3d5fee9158c9e66d68db4573fc9ff707f80aaf841026e27a22473256001ad3cc"
+    - id: "variant-c"
+      sha256: "085fe079e4412fae5cf7d801655cea7efec822328b9b956cb92b564baf00803b"
+    - id: "variant-d"
+      sha256: "6c67455adf502db0593160d7feee6dc750ae9978e311ce17d4206c9abf2e597b"
 hints:
   - "Start by examining the basic artifacts and evidence provided"
   - "Use industry-standard tools for this type of analysis"

@@ -100,3 +100,39 @@ export function getStats() {
     byDifficulty: difficulties
   };
 }
+export interface ChallengeFileList {
+  /** Files every student receives, relative to the challenge's assets folder. */
+  shared: string[];
+  /** Files only for students assigned a given variant, keyed by variant id. */
+  byVariant: Record<string, string[]>;
+}
+
+/**
+ * Lists the downloadable files for a challenge. Files directly in assets/ are shared;
+ * files in assets/variants/<variant-id>/ go only to students assigned that variant.
+ */
+export function getChallengeFiles(slug: string): ChallengeFileList {
+  const assetsDir = path.join(contentDir, slug, 'assets');
+  const visible = (name: string) => !name.startsWith('.');
+  const result: ChallengeFileList = { shared: [], byVariant: {} };
+
+  if (!fs.existsSync(assetsDir)) return result;
+
+  for (const entry of fs.readdirSync(assetsDir, { withFileTypes: true })) {
+    if (entry.isFile() && visible(entry.name)) result.shared.push(entry.name);
+  }
+
+  const variantsDir = path.join(assetsDir, 'variants');
+  if (fs.existsSync(variantsDir)) {
+    for (const variant of fs.readdirSync(variantsDir, { withFileTypes: true })) {
+      if (!variant.isDirectory()) continue;
+      result.byVariant[variant.name] = fs
+        .readdirSync(path.join(variantsDir, variant.name))
+        .filter(visible)
+        .map((file) => `variants/${variant.name}/${file}`);
+    }
+  }
+
+  result.shared.sort((a, b) => (a === 'README.txt' ? -1 : b === 'README.txt' ? 1 : a.localeCompare(b)));
+  return result;
+}
